@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.bishe.photo.dao.UserDao">
+
+	
+	<insert id="saveUser" parameterType="com.bishe.photo.entity.User">
+		insert into t_user(username,password)
+			values(#{userName,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR}) 
+	</insert>
+	
+	<select id="findByName" parameterType="string" resultType="com.bishe.photo.entity.User"> 
+		select id,username,password
+		from t_user where username= #{userName}
+	</select>
+	
+	
+	
+</mapper>

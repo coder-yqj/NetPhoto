@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.bishe.photo.dao.PhotoAlbumDao">
+
+	
+	<insert id="saveAlbum" parameterType="com.bishe.photo.entity.PhotoAlbum">
+		insert into t_photoalbum(name,type,userId)
+			values(#{name,jdbcType=VARCHAR},#{type,jdbcType=NUMERIC},#{userId,jdbcType=NUMERIC}) 
+	</insert>
+	
+	<select id="findAll" parameterType="int" resultType="com.bishe.photo.entity.PhotoAlbum">
+		select id,name,type,coverUrl,userId from t_photoalbum where userId = #{userId,jdbcType=NUMERIC}
+	</select>
+	
+	<delete id="deleteByUserId" parameterType="int">
+		delete from t_photoalbum where id = #{id,jdbcType=NUMERIC}
+	</delete>
+	
+	<update id="update" parameterType="com.bishe.photo.entity.PhotoAlbum">
+		update t_photoalbum 
+		set name=#{name,jdbcType=VARCHAR},type=#{type,jdbcType=NUMERIC},
+		coverUrl=#{coverUrl,jdbcType=VARCHAR}
+		where id=#{id,jdbcType=NUMERIC}
+	</update>
+	
+</mapper>

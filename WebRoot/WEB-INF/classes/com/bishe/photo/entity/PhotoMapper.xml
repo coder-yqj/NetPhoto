@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.bishe.photo.dao.PhotoDao">
+
+	
+	<insert id="save" parameterType="com.bishe.photo.entity.Photo">
+	<selectKey resultType="int" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS id
+	</selectKey>
+		insert into t_photo(name,photoUrl,belongId,userId)
+			values(#{name,jdbcType=VARCHAR},#{photoUrl,jdbcType=VARCHAR},
+			#{belongId,jdbcType=NUMERIC},#{userId,jdbcType=NUMERIC}) 
+	</insert>
+	
+	<select id="findAll" parameterType="int" resultType="com.bishe.photo.entity.Photo">
+		select id,name,photoUrl,belongId 
+		from t_photo where belongId=#{belongId,jdbcType=NUMERIC}
+	</select>
+	
+	<select id="findById" parameterType="int" resultType="com.bishe.photo.entity.Photo">
+		select id,name,photoUrl,belongId 
+		from t_photo where id= #{id,jdbcType=NUMERIC}
+	</select>
+	
+</mapper>
