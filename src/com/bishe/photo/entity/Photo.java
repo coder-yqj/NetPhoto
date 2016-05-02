@@ -1,6 +1,7 @@
 package com.bishe.photo.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Photo implements Serializable {
 
@@ -25,16 +26,13 @@ public class Photo implements Serializable {
 	private String photoUrl;
 
 	/**
-	 * 照片评论
-	 */
-	private String comment;
-
-	/**
 	 * 属于哪个相册
 	 */
 	private Integer belongId;
 
 	private Integer userId;
+
+	private List<Comment> comments;
 
 	public Integer getId() {
 		return id;
@@ -60,13 +58,6 @@ public class Photo implements Serializable {
 		this.photoUrl = photoUrl;
 	}
 
-	public String getComment() {
-		return comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
 
 	public Integer getBelongId() {
 		return belongId;
@@ -90,6 +81,14 @@ public class Photo implements Serializable {
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
+	}
+
+	public List<Comment> getComments() {
+		return comments;
+	}
+
+	public void setComments(List<Comment> comments) {
+		this.comments = comments;
 	}
 
 	@Override
@@ -124,8 +123,12 @@ public class Photo implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Photo [name=" + name + ", belongId=" + belongId + ", userId="
-				+ userId + "]";
+		return "Photo [id=" + id + ", name=" + name + ", photoUrl=" + photoUrl
+				+ ", belongId=" + belongId + ", userId=" + userId
+				+ ", comments=" + comments + "]";
 	}
+
+ 
+	 
 
 }

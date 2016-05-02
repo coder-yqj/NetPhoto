@@ -1,5 +1,6 @@
 package com.bishe.photo.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,9 @@ public class PhotoAlbumServiceImpl implements PhotoAlbumService {
 	
 	
 	@Override
-	public void saveAlbum(PhotoAlbum photoAlbum) {
+	public Integer saveAlbum(PhotoAlbum photoAlbum) {
 		photoAlbumDao.saveAlbum(photoAlbum);
+		return photoAlbum.getId();
 	}
 
 
@@ -37,6 +39,21 @@ public class PhotoAlbumServiceImpl implements PhotoAlbumService {
 	@Override
 	public void update(PhotoAlbum photoAlbum) {
 		photoAlbumDao.update(photoAlbum);
+	}
+
+
+	@Override
+	public PhotoAlbum findById(Integer id) {
+		return photoAlbumDao.findById(id);
+	}
+
+
+	@Override
+	public void updateCover(String url, Integer id) {
+		HashMap<String, Object> map = new HashMap<>();
+		map.put("url", url);
+		map.put("id", id);
+		photoAlbumDao.updateCover(map);
 	}
 	
 	

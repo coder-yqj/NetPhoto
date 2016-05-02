@@ -1,5 +1,6 @@
 package com.bishe.photo.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bishe.photo.domain.Message;
+import com.bishe.photo.entity.Photo;
 import com.bishe.photo.entity.PhotoAlbum;
 import com.bishe.photo.entity.User;
 import com.bishe.photo.service.PhotoAlbumService;
@@ -32,10 +34,20 @@ public class PhotoAlbumController {
 		logger.info("sessionId:"+session.getId());
 		logger.info("user:"+user);
 		PhotoAlbum photoAlbum = new PhotoAlbum(name,type,user.getId());
-		photoAlbumService.saveAlbum(photoAlbum);
-		return new Message("1", "创建相册成功");
+		Integer saveId = photoAlbumService.saveAlbum(photoAlbum);
+		return this.findById(saveId);
 	}
 	
+	
+	@RequestMapping("/findById")
+	@ResponseBody
+	public Message findById(Integer id){
+		logger.info("查询id为："+id+" 的照片");
+		PhotoAlbum photos = photoAlbumService.findById(id);
+		List<PhotoAlbum> photoAlbum = new ArrayList<>();
+		photoAlbum.add(photos);
+		return new Message("1",photoAlbum);
+	}
 	
 	@ResponseBody
 	@RequestMapping("/findAll")
@@ -53,15 +65,17 @@ public class PhotoAlbumController {
 	
 	@ResponseBody
 	@RequestMapping("/delete")
-	public Message delete(Integer id){
+	public Message delete(Integer id,HttpServletRequest request){
 		logger.info("删除相册");
+		logger.info("删除相册id为"+id+"的相册");
 		try {
 			photoAlbumService.delete(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new Message("0","删除失败");
 		}
-		return new Message("1","删除成功");
+		
+		return this.findAll(request);
 	}
 	
 	@ResponseBody
@@ -76,4 +90,20 @@ public class PhotoAlbumController {
 		}
 		return new Message("1","更新成功");
 	}
+	
+	
+	//设置封面
+	@ResponseBody
+	@RequestMapping("/setCover")
+	public Message setCover(String url,Integer id){
+		logger.info("更新相册id为:"+id + " --的封面为:"+url);
+		try {
+			photoAlbumService.updateCover(url, id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Message("0","设置封面失败");
+		}
+		return new Message("1","设置封面成功");
+	}
+	
 }

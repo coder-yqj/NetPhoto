@@ -121,5 +121,7 @@ public class PhotoAlbum implements Serializable {
 				+ ", coverUrl=" + coverUrl + ", userId=" + userId + "]";
 	}
 
+	 
+
  
 }

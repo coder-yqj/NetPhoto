@@ -10,7 +10,11 @@ public interface PhotoAlbumService {
 	 * 保存相册
 	 * @param photoAlbum
 	 */
-	public void saveAlbum(PhotoAlbum photoAlbum);
+	public Integer saveAlbum(PhotoAlbum photoAlbum);
+	
+	
+	public PhotoAlbum findById(Integer id);
+	
 	
 	/**
 	 * 返回所有相册
@@ -31,6 +35,9 @@ public interface PhotoAlbumService {
 	 * @param photoAlbum  更新后的相册信息
 	 */
 	public void update(PhotoAlbum photoAlbum);
+	
+	
+	public void updateCover(String url ,Integer id);
 	
 	
 }

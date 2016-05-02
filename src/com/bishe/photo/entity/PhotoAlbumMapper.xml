@@ -5,6 +5,9 @@
 
 	
 	<insert id="saveAlbum" parameterType="com.bishe.photo.entity.PhotoAlbum">
+	<selectKey resultType="int" order="AFTER" keyProperty="id">
+	SELECT LAST_INSERT_ID() AS id
+	</selectKey>
 		insert into t_photoalbum(name,type,userId)
 			values(#{name,jdbcType=VARCHAR},#{type,jdbcType=NUMERIC},#{userId,jdbcType=NUMERIC}) 
 	</insert>
@@ -22,6 +25,14 @@
 		set name=#{name,jdbcType=VARCHAR},type=#{type,jdbcType=NUMERIC},
 		coverUrl=#{coverUrl,jdbcType=VARCHAR}
 		where id=#{id,jdbcType=NUMERIC}
+	</update>
+	
+	<select id="findById" parameterType="int" resultType="com.bishe.photo.entity.PhotoAlbum">  
+		select id,name,type,coverUrl,userId from t_photoalbum where id= #{id,jdbcType=NUMERIC}
+	</select>
+	
+	<update id="updateCover" parameterType="hashMap">
+		update t_photoalbum  set coverUrl = #{url,jdbcType=VARCHAR} where id= #{id,jdbcType=NUMERIC}
 	</update>
 	
 </mapper>
