@@ -9,5 +9,5 @@
 			values(#{photoId,jdbcType=NUMERIC},#{voteValue,jdbcType=NUMERIC}) 
 	</insert>
  
-	
+	<select id="findAvgVote"></select>
 </mapper>

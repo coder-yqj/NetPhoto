@@ -7,4 +7,5 @@ public interface VoteDao {
 	
 	public void saveVote(Vote vote);
 	
+	public Double findAvgVote(Integer photoId);
 }

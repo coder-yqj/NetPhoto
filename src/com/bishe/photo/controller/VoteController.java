@@ -27,4 +27,8 @@ public class VoteController {
 		return new Message("1","投票成功");
 	}
 	
+	public void getAvgVote(Integer photoId){
+		
+	}
+	
 }
