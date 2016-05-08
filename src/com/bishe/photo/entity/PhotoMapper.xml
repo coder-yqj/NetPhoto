@@ -16,13 +16,20 @@
 		select * from t_comment where photoId = #{id}
 	</select>
 	
+	<select id="findVoteValueByPhotoId" parameterType="int" resultType="double">
+		select TRUNCATE(avg(voteValue),1) as voteValue from t_vote where photoId = #{id}
+		
+	</select>
+	
 	<resultMap type="com.bishe.photo.entity.Photo" id="photoMap">
 		<id column="id" property="id"/>
+		<association property="voteValue" javaType="double" 
+			column="id" select="findVoteValueByPhotoId">
+			</association>
 		<collection property="comments" javaType="java.util.ArrayList"
 			ofType="com.bishe.photo.entity.Comment" column="id"
 				select="findCommentByPhotoId">
 		</collection>
-		
 	</resultMap>
 	
 	

@@ -3,7 +3,7 @@ package com.bishe.photo.entity;
 public class Vote {
 	private Integer id;
 	private Integer photoId;
-	private Integer voteValue;
+	private Double voteValue;
 	public Integer getId() {
 		return id;
 	}
@@ -17,10 +17,11 @@ public class Vote {
 		this.photoId = photoId;
 	}
 	 
-	public Integer getVoteValue() {
+	 
+	public Double getVoteValue() {
 		return voteValue;
 	}
-	public void setVoteValue(Integer voteValue) {
+	public void setVoteValue(Double voteValue) {
 		this.voteValue = voteValue;
 	}
 	@Override

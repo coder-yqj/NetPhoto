@@ -72,7 +72,7 @@ public class PhotoController {
 	        return this.findById(saveId);
 	    }
 	 
-	@RequestMapping("findByid")
+	@RequestMapping("/findByid")
 	@ResponseBody
 	public Message findById(Integer id){
 		logger.info("查询id为："+id+" 的照片");
@@ -94,7 +94,7 @@ public class PhotoController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			logger.error("返回相应相册的所有照片出错");
-			return new Message("1","返回相应相册的所有照片出错");
+			return new Message("0","返回相应相册的所有照片出错");
 		}
 		 return new Message("1",photos);
 	 }
