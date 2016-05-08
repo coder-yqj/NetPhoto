@@ -7,4 +7,6 @@ public interface VoteService {
 	
 	public void addVote(Vote vote);
 	
+	public Double getAvgVote(Integer photoId);
+	
 }

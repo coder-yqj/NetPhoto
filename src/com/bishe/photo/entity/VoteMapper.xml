@@ -9,5 +9,7 @@
 			values(#{photoId,jdbcType=NUMERIC},#{voteValue,jdbcType=NUMERIC}) 
 	</insert>
  
-	<select id="findAvgVote"></select>
+	<select id="findAvgVote" parameterType="int" resultType="double">
+		select TRUNCATE(avg(voteValue),1) as voteValue from t_vote where photoId = #{id}
+	</select>
 </mapper>

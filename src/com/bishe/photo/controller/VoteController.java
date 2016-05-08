@@ -24,11 +24,12 @@ public class VoteController {
 			e.printStackTrace();
 			return new Message("0","投票失败");
 		}
-		return new Message("1","投票成功");
+		return this.getAvgVote(vote.getPhotoId());
 	}
-	
-	public void getAvgVote(Integer photoId){
-		
+	@ResponseBody
+	@RequestMapping("/getAvg.do")
+	public Message getAvgVote(Integer photoId){
+		return new Message("1",voteService.getAvgVote(photoId));
 	}
 	
 }

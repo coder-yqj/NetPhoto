@@ -18,4 +18,9 @@ public class VoteServiceImpl implements VoteService{
 		voteDao.saveVote(vote);
 	}
 
+	@Override
+	public Double getAvgVote(Integer photoId) {
+		return voteDao.findAvgVote(photoId);
+	}
+
 }
