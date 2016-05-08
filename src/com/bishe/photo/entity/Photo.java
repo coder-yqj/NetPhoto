@@ -33,6 +33,8 @@ public class Photo implements Serializable {
 	private Integer userId;
 
 	private List<Comment> comments;
+	
+	private Double voteValue;
 
 	public Integer getId() {
 		return id;
@@ -74,6 +76,15 @@ public class Photo implements Serializable {
 	public void setUserId(Integer userId) {
 		this.userId = userId;
 	}
+	
+
+	public Double getVoteValue() {
+		return voteValue;
+	}
+
+	public void setVoteValue(Double voteValue) {
+		this.voteValue = voteValue;
+	}
 
 	@Override
 	public int hashCode() {
@@ -113,7 +124,31 @@ public class Photo implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Photo(String name, String photoUrl, Integer belongId, Integer userId) {
+	public Photo(Integer id, String name, String photoUrl, Integer belongId,
+			Integer userId, List<Comment> comments, Double voteValue) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.photoUrl = photoUrl;
+		this.belongId = belongId;
+		this.userId = userId;
+		this.comments = comments;
+		this.voteValue = voteValue;
+	}
+
+	public Photo(Integer id, String name, String photoUrl, Integer belongId,
+			Integer userId, List<Comment> comments) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.photoUrl = photoUrl;
+		this.belongId = belongId;
+		this.userId = userId;
+		this.comments = comments;
+	}
+
+	public Photo(String name, String photoUrl, Integer belongId,
+			Integer userId) {
 		super();
 		this.name = name;
 		this.photoUrl = photoUrl;
@@ -125,8 +160,10 @@ public class Photo implements Serializable {
 	public String toString() {
 		return "Photo [id=" + id + ", name=" + name + ", photoUrl=" + photoUrl
 				+ ", belongId=" + belongId + ", userId=" + userId
-				+ ", comments=" + comments + "]";
+				+ ", comments=" + comments + ", voteValue=" + voteValue + "]";
 	}
+
+	 
 
  
 	 
