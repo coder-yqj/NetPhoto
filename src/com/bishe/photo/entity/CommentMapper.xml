@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.bishe.photo.dao.CommentDao">
+
+	 <insert id="saveComment" parameterType="com.bishe.photo.entity.Comment" useGeneratedKeys="true" keyProperty="id">
+		insert into t_comment(content,date,photoId,userId)
+			values(#{content,jdbcType=VARCHAR},#{date,jdbcType=DATE},
+			#{photoId,jdbcType=NUMERIC},#{userId,jdbcType=NUMERIC}) 
+   	 </insert>
+		
+		
+	<delete id="deleteComment" parameterType="int">
+		delete from t_comment where id = #{id,jdbcType=NUMERIC} 
+	</delete>	
+	
+	<select id="findById" parameterType="int" resultType="com.bishe.photo.entity.Comment">
+		select *  from t_comment where id = #{id,jdbcType=NUMERIC}
+	</select>
+	
+</mapper>

@@ -70,3 +70,10 @@ CREATE TABLE t_comment(
 	userName VARCHAR(32)
 )ENGINE=innoDB;
 
+
+CREATE TABLE t_vote(
+	id int PRIMARY KEY auto_increment,
+	photoId int references t_photo(id),
+	voteValue int
+)ENGINE=innoDB;
+
