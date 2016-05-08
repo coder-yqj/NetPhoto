@@ -11,4 +11,6 @@ public interface PhotoService {
 	public List<Photo> findAll(Integer belongId);
 	
 	public Photo findById(Integer id);
+	
+	public void delete(Integer id);
 }

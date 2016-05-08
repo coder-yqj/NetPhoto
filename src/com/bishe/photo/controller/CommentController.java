@@ -1,7 +1,9 @@
 package com.bishe.photo.controller;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -44,8 +46,10 @@ public class CommentController {
 	}
 	
 	public Message findById(Integer id){
+		List<Comment> comments = new ArrayList<Comment>();
 		Comment comment = commentService.findById(id);
-		return new Message("1",comment);
+		comments.add(comment);
+		return new Message("1",comments);
 	}
 	
 	

@@ -69,7 +69,7 @@ public class PhotoController {
 				e.printStackTrace();
 				return new Message("0","保存相片失败");
 			}
-	        return this.findById(saveId);
+	        return this.findAll(belongId);
 	    }
 	 
 	@RequestMapping("/findByid")
@@ -99,4 +99,20 @@ public class PhotoController {
 		 return new Message("1",photos);
 	 }
 	
+	 
+	 
+	 @ResponseBody
+		@RequestMapping("/delete")
+		public Message delete(Integer id,Integer belongId){
+			logger.info("删除照片");
+			logger.info("删除照片id为"+id);
+			try {
+				photoService.delete(id);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return new Message("0","删除失败");
+			}
+			
+			return this.findAll(belongId);
+		}
 }

@@ -43,4 +43,9 @@
 		from t_photo where id= #{id,jdbcType=NUMERIC}
 	</select>
 	
+	<delete id="delete" parameterType="int">
+		delete from t_photo where id=#{id,jdbcType=NUMERIC}
+	</delete>
+	
+	
 </mapper>
