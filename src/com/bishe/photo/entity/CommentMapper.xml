@@ -4,9 +4,9 @@
 <mapper namespace="com.bishe.photo.dao.CommentDao">
 
 	 <insert id="saveComment" parameterType="com.bishe.photo.entity.Comment" useGeneratedKeys="true" keyProperty="id">
-		insert into t_comment(content,date,photoId,userId)
+		insert into t_comment(content,date,photoId,userId,userName)
 			values(#{content,jdbcType=VARCHAR},#{date,jdbcType=DATE},
-			#{photoId,jdbcType=NUMERIC},#{userId,jdbcType=NUMERIC}) 
+			#{photoId,jdbcType=NUMERIC},#{userId,jdbcType=NUMERIC},#{userName,jdbcType=VARCHAR}) 
    	 </insert>
 		
 		

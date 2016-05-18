@@ -36,6 +36,7 @@ public class CommentController {
 		comment.setDate(new Timestamp(new Date().getTime()) );
 		
 		try {
+			System.out.println("comment"+comment);
 			Integer savedId = commentService.saveComment(comment);
 		} catch (Exception e) {
 			e.printStackTrace();
