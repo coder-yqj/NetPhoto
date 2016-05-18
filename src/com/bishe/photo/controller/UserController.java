@@ -1,12 +1,14 @@
 package com.bishe.photo.controller;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.bishe.photo.domain.Message;
 import com.bishe.photo.entity.User;
 import com.bishe.photo.service.UserService;
 
@@ -28,6 +30,19 @@ public class UserController {
 			return "../register";
 		}
 		
+	}
+	@ResponseBody
+	@RequestMapping("/updatePassword")
+	public Message updatePassword(String oldPassword,String newPassword,HttpServletRequest request){
+		User user = (User) request.getSession().getAttribute("user");
+		User findUser = userService.findByName(user.getUserName());
+		if(oldPassword.equals(findUser.getPassword())){
+			findUser.setPassword(newPassword);
+			userService.updatePassword(findUser);
+			return new Message("1", "更改密码成功");
+		}else{
+			return new Message("0", "更改密码失败");
+		}
 	}
 	
 }	

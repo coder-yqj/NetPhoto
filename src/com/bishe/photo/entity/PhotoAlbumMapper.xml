@@ -35,4 +35,9 @@
 		update t_photoalbum  set coverUrl = #{url,jdbcType=VARCHAR} where id= #{id,jdbcType=NUMERIC}
 	</update>
 	
+	<select id="findAllUserAlbum" parameterType="int" resultType="com.bishe.photo.entity.PhotoAlbum">
+		select id,name,type,coverUrl,userId from t_photoalbum where userId != #{userId,jdbcType=NUMERIC} and type=1
+	</select>
+	
+	
 </mapper>

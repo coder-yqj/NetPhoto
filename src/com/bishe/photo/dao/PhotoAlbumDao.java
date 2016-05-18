@@ -20,4 +20,6 @@ public interface PhotoAlbumDao {
 	public PhotoAlbum findById(Integer id);
 	
 	public void updateCover(Map<String, Object> map);
+	
+	public List<PhotoAlbum> findAllUserAlbum(Integer userId);
 }

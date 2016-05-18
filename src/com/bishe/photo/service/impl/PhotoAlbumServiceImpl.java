@@ -55,6 +55,12 @@ public class PhotoAlbumServiceImpl implements PhotoAlbumService {
 		map.put("id", id);
 		photoAlbumDao.updateCover(map);
 	}
+
+
+	@Override
+	public List<PhotoAlbum> findAllUserAlbum(Integer userId) {
+		return photoAlbumDao.findAllUserAlbum(userId);
+	}
 	
 	
 

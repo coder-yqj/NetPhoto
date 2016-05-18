@@ -14,6 +14,8 @@
 		from t_user where username= #{userName}
 	</select>
 	
-	
+	<update id="updatePassword" parameterType="com.bishe.photo.entity.User">
+		update t_user set password = #{password} where id = #{id,jdbcType=NUMERIC}
+	</update>
 	
 </mapper>

@@ -39,5 +39,11 @@ public interface PhotoAlbumService {
 	
 	public void updateCover(String url ,Integer id);
 	
+	/**
+	 * 返回除了自己的所有公开相册
+	 * @param userId
+	 * @return
+	 */
+	public List<PhotoAlbum> findAllUserAlbum(Integer userId);
 	
 }

@@ -20,7 +20,8 @@ public class PhotoAlbum implements Serializable {
 	private String name;
 
 	/**
-	 * 相册类型 0 --> 隐私 1 --> 公开
+	 * 相册类型 0 --> 隐私
+	 * 		  1 --> 公开
 	 */
 	private Integer type;
 

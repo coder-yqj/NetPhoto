@@ -105,5 +105,18 @@ public class PhotoAlbumController {
 		}
 		return new Message("1","设置封面成功");
 	}
+	@ResponseBody
+	@RequestMapping("/findAllUserAlbum")
+	public Message findAllUserAlbum(HttpServletRequest request){
+		List<PhotoAlbum> photoAlbums;
+		try {
+			photoAlbums = photoAlbumService.findAllUserAlbum(((User)request.getSession().getAttribute("user")).getId());
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new Message("0","返回广场相册出错");
+		}
+		logger.info("返回所有photoAlbums:"+photoAlbums);
+		return new Message("1",photoAlbums);
+	}
 	
 }
