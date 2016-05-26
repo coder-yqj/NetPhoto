@@ -32,7 +32,7 @@ public class PhotoController {
 	
 	@ResponseBody
 	 @RequestMapping(value="/upload",method=RequestMethod.POST)
-	    private Message fildUpload(@RequestParam(value="file",required=false) MultipartFile file[],
+	    private Message fildUpload(@RequestParam(value="file",required=false) MultipartFile file,
 	    		String name,Integer belongId,HttpServletRequest request)throws Exception{
 	        //基本表单
 	         
@@ -40,8 +40,9 @@ public class PhotoController {
 	        String pathRoot = request.getSession().getServletContext().getRealPath("");
 	        String path="";
 	        List<String> listImagePath=new ArrayList<String>();
-	        for (MultipartFile mf : file) {
-            if(!mf.isEmpty()){
+//	        for (MultipartFile mf : file) {
+	        Integer saveId = null;
+	        if(!file.isEmpty()){
                 //生成uuid作为文件名称
 //                String uuid = UUID.randomUUID().toString().replaceAll("-","");
                 //获得文件类型（可以判断如果不是图片，禁止上传）
@@ -53,13 +54,13 @@ public class PhotoController {
         				+ FilenameUtils.getExtension(name);
                 System.out.println("imageName:"+newFileName);
                 path="/upload/"+newFileName;
-                mf.transferTo(new File(pathRoot+path));
+                file.transferTo(new File(pathRoot+path));
                 listImagePath.add(path);
-                System.out.println(path);
+//                System.out.println(path);
                 logger.info("name:"+name);
                 logger.info("belongId:"+belongId);
                 User user = (User) request.getSession().getAttribute("user");
-                Integer saveId = null;
+                
                 try {
                 	saveId = photoService.save(new Photo(name, path, belongId, user.getId()));
                 } catch (Exception e) {
@@ -68,8 +69,8 @@ public class PhotoController {
                 	return new Message("0","保存相片失败");
                 }
             }
-	        }
-	        return this.findAll(belongId);
+//	        }
+	        return this.findById(saveId);
 	    }
 	 
 	@RequestMapping("/findByid")
